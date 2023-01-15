@@ -18,11 +18,10 @@ public class ProductGenerator {
     public void generateProductOnStartup() {
         Faker faker = new Faker();
 
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 5; i++) {
             Product product = new Product();
             product.setName(faker.name().fullName());
             product.setCost(faker.number().numberBetween(300, 1500));
-            product.setSecretKey(faker.name().fullName());
 
             productRepository.save(product);
         }

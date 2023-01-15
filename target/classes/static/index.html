@@ -44,6 +44,7 @@
             <td>Название</td>
             <td>Стоимость</td>
             <td>Действие</td>
+            <td>Действие</td>
         </tr>
         <tbody>
         <tr ng-repeat="p in ProductsList">
@@ -53,9 +54,36 @@
             <td>
                 <button class="btn btn-danger" ng-click="deleteProduct(p.id)">Удалить</button>
             </td>
+            <td>
+                <button class="btn btn-danger" ng-click="addProductToCart(p.id)">Добавить в корзину</button>
+            </td>
         </tr>
         </tbody>
     </table>
+
+    <h3>Корзина</h3>
+    <form novalidate ng-submit="loadCartProducts()">
+    <table class="table table-hover">
+        <tr>
+            <td>Номер</td>
+            <td>Название</td>
+            <td>Стоимость</td>
+            <td>Количество</td>
+            <td>Действие</td>
+        </tr>
+        <tbody>
+        <tr ng-repeat="p in ProductsCartList">
+            <td>{{p.id}}</td>
+            <td>{{p.name}}</td>
+            <td>{{p.cost}}</td>
+            <td>{{p.quantity}}</td>
+            <td>
+                <button class="btn btn-danger" ng-click="deleteProductInCart(p.id)">Удалить</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    </form>
 
     <p></p>
     <h3>Добавить продукт</h3>

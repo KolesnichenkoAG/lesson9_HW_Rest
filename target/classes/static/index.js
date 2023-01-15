@@ -12,8 +12,26 @@ angular.module('app', []).controller('indexController', function ($scope, $http)
             }
         }).then(function (response) {
                 $scope.ProductsList = response.data.content;
+
             });
     };
+
+    $scope.loadCartProducts = function () {
+        $http({
+            url: contextPath + '/carts',
+            method: 'GET',
+        }).then(function (response) {
+            $scope.ProductsCartList = response.data;
+        });
+    };
+
+    $scope.deleteProductInCart = function (productId) {
+        console.log('Click0')
+        $http.get(contextPath + '/carts/delete/' + productId)
+            .then(function (response) {
+                $scope.loadCartProducts();
+            });
+    }
 
     $scope.deleteProduct = function (productId) {
         console.log('Click')
@@ -32,5 +50,15 @@ angular.module('app', []).controller('indexController', function ($scope, $http)
             });
     }
 
+    $scope.addProductToCart = function (productId) {
+        console.log('Click3');
+        $http.get(contextPath + '/carts/add/' + productId)
+            .then(function (response) {
+                $scope.loadCartProducts();
+            });
+    }
+
     $scope.loadProducts();
+    $scope.loadCartProducts();
+
 });
